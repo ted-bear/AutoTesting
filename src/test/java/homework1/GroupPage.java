@@ -4,11 +4,14 @@ import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
+import java.util.logging.Logger;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static org.junit.Assert.assertTrue;
 
 public class GroupPage extends LoadableComponent<GroupPage> {
+    private static final Logger LOGGER = Logger.getLogger("Страница группы");
     private static final By MEDIA_BLOCK = By.xpath(".//*[@class='main-content-header_data_nav-menu']");
 
     public int getNumOfThemes() {

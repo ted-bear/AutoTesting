@@ -6,11 +6,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
+import java.util.logging.Logger;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static org.junit.Assert.assertTrue;
 
 public class OkGroupsPage extends LoadableComponent<OkGroupsPage> {
+    private static final Logger LOGGER = Logger.getLogger("Страница групп");
     private static final By MEDIA_BLOCK = By.xpath(".//*[@class='portlet ']");
     private final String xpathForGroup = ".//*[@class='portlet ']//*[@class='photo_img']";
 
