@@ -5,6 +5,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import static com.codeborne.selenide.Selenide.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -12,7 +15,7 @@ import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertTrue;
 
-public class GoogleTest {
+public class OkTest {
 
     private static OkProfilePage profile;
 
@@ -24,7 +27,6 @@ public class GoogleTest {
         results.getPassword().setValue("cxm62qdRIEO");
         results.getButtonToLogIn().click();
         profile = new OkProfilePage();
-        System.out.println("Before init() method called");
     }
 
     @After
@@ -49,8 +51,10 @@ public class GoogleTest {
     public void postAddedBeforeToday() {
         String str = profile.getPostDate().getText().split(" ")[0];
         int postName = Integer.parseInt(str);
+        Calendar cal = Calendar.getInstance();
+        int today = cal.get(Calendar.DAY_OF_MONTH);
 
-        assertThat(postName, lessThanOrEqualTo(27));
+        assertThat(postName, lessThanOrEqualTo(today));
     }
 
     @Test
@@ -63,6 +67,6 @@ public class GoogleTest {
         ColumnMenuItemWrapper wrapper = new ColumnMenuItemWrapper($x(".//*[@class='navigation']"));
         OkGroupsPage groupsPage = wrapper.clickOnItemMenu();
         GroupPage groupPage = groupsPage.getGroup();
-        assertTrue(groupPage.getNumOfThemes() > 300);
+        assertTrue("Количество тем в группе меньше 300", groupPage.getNumOfThemes() > 300);
     }
 }

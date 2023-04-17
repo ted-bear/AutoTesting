@@ -3,6 +3,7 @@ package homework1;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -15,7 +16,8 @@ public class OkGroupsPage extends LoadableComponent<OkGroupsPage> {
 
 
     public GroupPage getGroup() {
-        $x(xpathForGroup).click();
+        $x(xpathForGroup).shouldBe(Condition.visible).click();
+
         return new GroupPage();
     }
 

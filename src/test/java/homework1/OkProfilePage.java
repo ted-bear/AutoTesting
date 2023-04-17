@@ -11,36 +11,36 @@ import static org.junit.Assert.assertTrue;
 
 public class OkProfilePage extends LoadableComponent<OkProfilePage> {
 
-    private final String locForPostName = ".group-link.o";
-    private final String locForGetPost = ".//div[contains(@data-l, 'fP,1,fD')]//div[contains(@class, 'vid-card')]";
-    private final String locForGetPostDate = ".feed_date";
-    private final String locForProfileName = ".//div[@class='nav-side_i-w']";
+    private final String LOCATOR_FOR_POST_NAME = ".group-link.o";
+    private final String LOCATOR_FOR_GET_NAME = ".//div[contains(@data-l, 'fP,1,fD')]//div[contains(@class, 'vid-card')]";
+    private final String LOCATOR_FOR_GET_DATE = ".feed_date";
+    private final String LOCATOR_FOR_PROFILE_NAME = ".//div[@class='nav-side_i-w']";
     private static final By MEDIA_BLOCK = By.id("hook_Block_Navigation");
 
 
     public SelenideElement getPostName() {
-        return $(locForPostName);
+        return $(LOCATOR_FOR_POST_NAME);
     }
 
     public SelenideElement getPost() {
-        return $x(locForGetPost);
+        return $x(LOCATOR_FOR_GET_NAME);
     }
 
     public SelenideElement getPostDate() {
-        return $(locForGetPostDate);
+        return $(LOCATOR_FOR_GET_DATE);
     }
 
     public SelenideElement getProfileName() {
-        return $x(locForProfileName);
+        return $x(LOCATOR_FOR_PROFILE_NAME);
     }
 
     public void exitProfile() {
         SelenideElement elem = $x(".//div[@class='ucard-mini toolbar_ucard js-toolbar-menu']");
-        elem.click();
+        elem.shouldBe(Condition.visible).click();
         SelenideElement exit = $x(".//div[@class='toolbar_accounts-user-delete-button']");
-        exit.click();
+        exit.shouldBe(Condition.visible).click();
         SelenideElement okButton = $x("//input[@class='button-pro form-actions_yes']");
-        okButton.click();
+        okButton.shouldBe(Condition.visible).click();
     }
 
     @Override
@@ -50,6 +50,7 @@ public class OkProfilePage extends LoadableComponent<OkProfilePage> {
 
     @Override
     protected void isLoaded() throws Error {
-        assertTrue("Menu column didn't load", $(MEDIA_BLOCK).exists());
+        $(MEDIA_BLOCK).shouldBe(Condition.visible);
+
     }
 }
