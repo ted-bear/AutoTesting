@@ -1,18 +1,17 @@
 package homework1;
 
-import com.codeborne.selenide.Condition;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Calendar;
-import java.util.Date;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 import static org.hamcrest.MatcherAssert.assertThat;
-
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class OkTest {
@@ -23,9 +22,9 @@ public class OkTest {
     public void setUp() {
         open("http://ok.ru");
         OkLoginPage results = new OkLoginPage();
-        results.getEmail().setValue("teddi2x2@gmail.com");
-        results.getPassword().setValue("cxm62qdRIEO");
-        results.getButtonToLogIn().click();
+        results.setEmail("teddi2x2@gmail.com");
+        results.setPassword("cxm62qdRIEO");
+        results.clickButtonToLogIn();
         profile = new OkProfilePage();
     }
 
@@ -36,7 +35,8 @@ public class OkTest {
 
     @Test
     public void userCanSearch() {
-        profile.getProfileName().shouldHave(Condition.text("Егор Топорков"));
+        String profileName = profile.getProfileName().getText();
+        assertEquals("Егор Топорков", profileName);
     }
 
     @Test
@@ -64,8 +64,7 @@ public class OkTest {
 
     @Test
     public void themesMoreThanNum() {
-        ColumnMenuItemWrapper wrapper = new ColumnMenuItemWrapper($x(".//*[@class='navigation']"));
-        OkGroupsPage groupsPage = wrapper.clickOnItemMenu();
+        OkGroupsPage groupsPage = OkGroupsPage.getGroupMenu();
         GroupPage groupPage = groupsPage.getGroup();
         assertTrue("Количество тем в группе меньше 300", groupPage.getNumOfThemes() > 300);
     }

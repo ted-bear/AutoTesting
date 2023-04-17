@@ -14,6 +14,11 @@ public class OkGroupsPage extends LoadableComponent<OkGroupsPage> {
     private static final By MEDIA_BLOCK = By.xpath(".//*[@class='portlet ']");
     private final String xpathForGroup = ".//*[@class='portlet ']//*[@class='photo_img']";
 
+    public static OkGroupsPage getGroupMenu() {
+        ColumnMenuItemWrapper wrapper = new ColumnMenuItemWrapper($x(".//*[@class='navigation']"));
+        return wrapper.clickOnItemMenu();
+    }
+
 
     public GroupPage getGroup() {
         $x(xpathForGroup).shouldBe(Condition.visible).click();

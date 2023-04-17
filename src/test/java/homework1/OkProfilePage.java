@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
-import static org.junit.Assert.assertTrue;
 
 public class OkProfilePage extends LoadableComponent<OkProfilePage> {
 

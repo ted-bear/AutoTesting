@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class ColumnMenuItemWrapper {
     private static final Logger LOGGER = Logger.getLogger("Column menu");
-    private static final By ITEM_PICTURE = By.xpath(".//*[@class='svg-ic svg-ico_users_3_18 tico_img null']");
+    private static final By ITEM_PICTURE = By.xpath(".//*[@class=\"tico null\" and contains(text(),'Группы')]");
     private final SelenideElement item;
 
     public ColumnMenuItemWrapper(SelenideElement item) {
@@ -17,7 +17,7 @@ public class ColumnMenuItemWrapper {
 
     public OkGroupsPage clickOnItemMenu() {
         item.hover().$(ITEM_PICTURE)
-                .shouldBe(Condition.visible).click();
+                .shouldBe(Condition.visible.because("Невидима иконка групп")).click();
         return new OkGroupsPage();
     }
 }
