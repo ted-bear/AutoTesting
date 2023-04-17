@@ -17,13 +17,15 @@ import static org.junit.Assert.assertTrue;
 public class OkTest {
 
     private static OkProfilePage profile;
+    private static final String EMAIL = "****";
+    private static final String PASSWORD = "****";
 
     @Before
     public void setUp() {
         open("http://ok.ru");
         OkLoginPage results = new OkLoginPage();
-        results.setEmail("teddi2x2@gmail.com");
-        results.setPassword("cxm62qdRIEO");
+        results.setEmail(EMAIL);
+        results.setPassword(PASSWORD);
         results.clickButtonToLogIn();
         profile = new OkProfilePage();
     }
